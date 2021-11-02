@@ -104,7 +104,11 @@ git remote rm origin
 git push -f origin master
 ```
 
+##### 三、后续push代码
 
+###### 1.git init初始化
+
+###### 2.执行github上传的命令即可
 
 
 
