@@ -100,8 +100,8 @@ git remote rm origin
 ###### 6.push代码
 
 ```
-//push到github仓库的master分支中
-git push -f origin master
+//push到github仓库的main分支中
+git push -f origin main
 ```
 
 ##### 三、后续push代码
