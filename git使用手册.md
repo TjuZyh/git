@@ -1,4 +1,4 @@
-#### 使用git实现github上传
+#### 使用git实现github/gitee上传
 
 ##### 一、初始化git
 
@@ -22,7 +22,7 @@ git init
 ###### 3.配置ssh
 
 ```
-//""中为登录github的邮箱
+//""中为登录github或gitee的邮箱
 //将会在你选择的路径下上生成 ssh key，如果你直接点击回车，会在默认路径下创建 ssh 。
 
 ssh-keygen -t rsa -C “tju_zhaoyihan@163.com”
@@ -40,16 +40,20 @@ ssh-keygen -t rsa -C “tju_zhaoyihan@163.com”
 pbcopy < ~/.ssh/id_rsa.pub
 ```
 
-###### 5.将生成好的ssh配置到github中
+###### 5.将ssh配置到远程仓库
 
-步骤：进入到github首页，点击右上角的头像，进入**settings/SSH and GPG Keys** ，新建SSH key，title随意，key直接ctrl+v即可
+步骤：
+
+- 进入到github首页，点击右上角的头像，进入**settings/SSH and GPG Keys** ，新建SSH key，title随意，key直接ctrl+v即可
+- 进入gitee，选择ssh公钥，添加公钥
 
 ###### 6.验证是否ssh添加成功
 
 ```
 ssh -T git@github.com
-
-//若出现Hi TjuZyh! You've successfully authenticated, but GitHub does not provide shell access.即添加成功
+//Hi TjuZyh! You've successfully authenticated, but GitHub does not provide shell access.
+ssh -T git@gitee.com
+//Hi tju_zhaoyihan! You've successfully authenticated, but GITEE.COM does not provide shell access.
 ```
 
 ###### 7.配置github的登录名以及登录邮箱
@@ -67,15 +71,22 @@ git config –global user.email “tju_zhaoyihan@163.com”
 
 直接在github中创建即可，添加repository name以及description，**一定要勾选add a README file**
 
-###### 2.查看改动
+###### 2.更新本地仓库
+
+*注意如果是团队合作push更改后的代码，需要执行
 
 ```
-git status
+git pull
 ```
+
+因为在你push之前，可能有人在你之前push过了新的一版代码，你需要将自己本地未修改的代码pull成最新的
 
 ###### 3.添加至本地仓库
 
 ```
+//查看修改信息
+git status
+
 //.表示更改所有的改动
 git add .
 ```
@@ -87,7 +98,7 @@ git add .
 git commit -m “修改信息”
 ```
 
-###### 5.配置github仓库路径
+###### 5.（若第一次创建，需要配置远程仓库路径）
 
 ```
 //后面的ssh地址可以从github目标仓库的code/clone/SSH中拷贝
@@ -100,6 +111,8 @@ git remote rm origin
 ###### 6.push代码
 
 ```
+git push
+
 //push到github仓库的main分支中
 git push -f origin main
 ```
