@@ -117,11 +117,35 @@ git push
 git push -f origin main
 ```
 
-##### 三、后续push代码
+##### 三、简易手册
 
-###### 1.git init初始化
+```
+$ git clone 项目ssh地址
+$ git pull
+$ git status
+$ git add .
+$ git commit -m "meg"
+$ git push
+```
 
-###### 2.执行github上传的命令即可
+##### 四、分支
 
+###### 1.查看分支
 
+```
+//查看远程分支
+git branch -a
+
+//查看本地分支
+git branch
+```
+
+###### 2.切换分支
+
+```
+// 切换本地分支
+git checkout objBranch
+// 查看本地当前分支
+git branch
+```
 
