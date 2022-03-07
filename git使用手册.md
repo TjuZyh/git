@@ -71,6 +71,10 @@ git config –global user.email “tju_zhaoyihan@163.com”
 
 直接在github中创建即可，添加repository name以及description，**一定要勾选add a README file**
 
+```
+git init
+```
+
 ###### 2.更新本地仓库
 
 *注意如果是团队合作push更改后的代码，需要执行
@@ -113,8 +117,56 @@ git remote rm origin
 ```
 git push
 
+git push origin main
+
 //push到github仓库的main分支中
+//-f为强制上传覆盖远程文件
+//团队开发时不要使用该模式！
 git push -f origin main
+```
+
+###### 7.问题解决
+
+**1、报错：因为在github上创建仓库存在readme文件，而本地没有**
+
+```
+zyh@yihandeMacBook-Pro javaSE % git push origin main
+To github.com:TjuZyh/javaSE.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'git@github.com:TjuZyh/javaSE.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+**解决：**
+
+- 在本地生成一个Readme文件
+
+  ```
+  git pull --rebase origin master     本地生成ReadMe文件
+  git push origin master
+  ```
+
+- 强制上传
+
+  ```
+  git push -f origin master
+  ```
+
+**2、 error: src refspec xxx does not match any / error: failed to push some refs to**
+
+**原因：在github上创建的工程默认分支名为main，而本地为master；导致了远程与本地的仓库关联不上**
+
+**解决：统一远程和本地的仓库名称即可**
+
+```
+//git branch -m oldBranchName newBranchName
+//将本地的master变为远程的main
+git branch -m master main
+//再push即可
+git push origin main
 ```
 
 ##### 三、简易手册
