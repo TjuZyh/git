@@ -52,6 +52,7 @@ pbcopy < ~/.ssh/id_rsa.pub
 ```
 ssh -T git@github.com
 //Hi TjuZyh! You've successfully authenticated, but GitHub does not provide shell access.
+
 ssh -T git@gitee.com
 //Hi tju_zhaoyihan! You've successfully authenticated, but GITEE.COM does not provide shell access.
 ```
@@ -69,7 +70,7 @@ git config –global user.email “tju_zhaoyihan@163.com”
 
 ###### 1.配置一个空的仓库
 
-直接在github中创建即可，添加repository name以及description，**一定要勾选add a README file**
+直接在github中创建即可，添加repository name以及description，**最好勾选add a README file（不勾选也可以后期建）**
 
 ```
 git init
@@ -77,7 +78,10 @@ git init
 
 ###### 2.更新本地仓库
 
-*注意如果是团队合作push更改后的代码，需要执行
+**注意如果是团队合作push更改后的代码，需要执行**
+
+- 如果不冲突，会把本地未修改的部分覆盖
+- 如果冲突，会提示*Your local changes to the following files would be overwritten by merge*，本次pull失败，不会改动本地代码
 
 ```
 git pull
@@ -108,7 +112,7 @@ git commit -m “修改信息”
 //后面的ssh地址可以从github目标仓库的code/clone/SSH中拷贝
 git remote add origin git@github.com:TjuZyh/blockChain-study.git
 
-//出现fatal: remote origin already exists报错
+//出现fatal: remote origin already exists报错，因为已经连接到远程了，不需要执行这一步了，除非你想连接其他仓库
 git remote rm origin
 ```
 
@@ -193,7 +197,21 @@ git push -u origin main
 ```
 git add .
 git commit -m "meg"
-git push
+//可以先看一下本地分支
+git branch
+git push origin main
+```
+
+**3、针对于团队开发**
+
+```
+//拉一下最新的代码
+git pull
+git add .
+git commit -m "meg"
+//可以先看一下本地分支
+git branch
+git push origin main
 ```
 
 ##### 四、分支
