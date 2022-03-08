@@ -169,15 +169,31 @@ git branch -m master main
 git push origin main
 ```
 
+**3、在执行git branch -M main 时 报error: refname refs/heads/master not found  fatal: Branch rename failed**
+
+**原因：要先初始化、add、commit之后，在进行更多操作**
+
 ##### 三、简易手册
 
+**1、针对于在本地写好的项目第一次上传github时：**
+
 ```
-$ git clone 项目ssh地址
-$ git pull
-$ git status
-$ git add .
-$ git commit -m "meg"
-$ git push
+git init
+git add .
+git commit -m "meg"
+//改名操作，因为github现在以main作为默认分支（原来为master）
+git branch -M main
+//连接远程仓库，只需要第一次连接
+git remote add origin XXXX.git
+git push -u origin main
+```
+
+**2、针对于个人项目迭代**
+
+```
+git add .
+git commit -m "meg"
+git push
 ```
 
 ##### 四、分支
