@@ -219,19 +219,46 @@ git push origin main
 ###### 1.查看分支
 
 ```
-//查看远程分支
+// 查看远程分支
 git branch -a
 
-//查看本地分支
+// 查看本地分支
 git branch
 ```
 
 ###### 2.切换分支
 
 ```
-// 切换本地分支
+// 切换本地分支 自动查询远程分支
 git checkout objBranch
 // 查看本地当前分支
-git branch
+git checkout
 ```
 
+##### 五、关于忽略文件
+
+###### 1. 新建.gitignore文件
+
+在该文件中，填写需要省略的文件或文件夹
+
+```.gitignore
+//忽略.idea目录下的全部文件
+.idea/
+
+//忽略.idea目录下的xxxx.txt
+.idea/xxxx.txt 
+
+//不忽略do.txt文件
+!do.txt
+
+//忽略所有的.jar文件
+*.jar
+```
+
+注意：如果要忽略的文件已被git管理，则需要删除对应缓存
+
+```
+git rm -r --cached .idea/    //-r为递归
+```
+
+删除后即可，可以通过status查看删除的文件，后add、commit、push等操作
